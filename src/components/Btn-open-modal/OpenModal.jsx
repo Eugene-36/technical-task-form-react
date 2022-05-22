@@ -19,7 +19,6 @@ const OpenModal = () => {
   function openModal() {
     setIsOpen(true);
   }
-  console.log('dsadsadsad');
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     subtitle.style.color = '#f00';
