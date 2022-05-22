@@ -1,0 +1,11 @@
+.addBtn {
+  width: 50px;
+  height: 25px;
+  background: rgba(131, 186, 99, 1);
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
