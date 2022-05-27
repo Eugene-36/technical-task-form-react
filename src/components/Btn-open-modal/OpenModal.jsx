@@ -1,55 +1,132 @@
 import React, { useState } from 'react';
 import style from './open-modal.module.css';
 import Modal from 'react-modal';
+import useToggle from '../../custom-hooks/useToggle';
+import { useForm } from 'react-hook-form';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
 const OpenModal = () => {
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [value, toggleValue] = useToggle(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+  } = useForm({ mode: 'onBlur' });
 
-  function openModal() {
-    setIsOpen(true);
+  function onSubmit(data) {
+    console.log('data', data);
+    reset();
+    //{}
   }
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <div>
-      <button onClick={openModal} className={style.addBtn}>
+      <button onClick={() => toggleValue(true)} className={style.addBtn}>
         Add
       </button>
       <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
+        isOpen={value}
+        onRequestClose={() => toggleValue(false)}
+        className={style.positionModal}
         contentLabel='Example Modal'
         ariaHideApp={false}
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
+        <h2>Invoice Address</h2>
+        <button onClick={() => toggleValue(false)}>X</button>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='first-form'>
+            <ul className='list initial-form'>
+              <li>
+                <label htmlFor='company'>Company: </label>
+                <input
+                  type='text'
+                  id='company'
+                  autoComplete='off'
+                  name='company'
+                  {...register('company', { required: true })}
+                />
+                <small></small>
+              </li>
+
+              <li>
+                <label htmlFor='name'>Name: </label>
+                <input
+                  type='text'
+                  id='name'
+                  data-email
+                  autoComplete='off'
+                  name='username'
+                  {...register('name', {
+                    required: 'This field is required',
+                    minLength: {
+                      value: 5,
+                      message: 'Min Length for this field is 5',
+                    },
+                  })}
+                />
+                <div style={{ height: 40, color: 'red' }}>
+                  {errors?.name && (
+                    <span>{errors?.name?.message || 'Error!'}</span>
+                  )}
+                </div>
+              </li>
+              <li>
+                <label htmlFor='additional'>Additional: </label>
+                <input
+                  type='text'
+                  id='additional'
+                  autoComplete='off'
+                  name='additional'
+                  {...register('additional')}
+                />
+                <small></small>
+              </li>
+              <li>
+                <label htmlFor='street'>Street: </label>
+                <input
+                  type='text'
+                  id='street'
+                  autoComplete='off'
+                  name='street'
+                  {...register('street')}
+                />
+                <small></small>
+              </li>
+
+              <li>
+                <label htmlFor='postalCode'>Postal Code: </label>
+                <input
+                  type='text'
+                  id='postalCode'
+                  autoComplete='off'
+                  name='postal-code'
+                  {...register('postalCode')}
+                />
+                <small></small>
+              </li>
+
+              <li>
+                <label htmlFor='country'>Country: </label>
+                <input
+                  type='text'
+                  id='country'
+                  autoComplete='off'
+                  name='country'
+                  {...register('country')}
+                />
+                <small></small>
+              </li>
+            </ul>
+            <div className='btn-wrapper'>
+              <button
+                type='submit'
+                className='btn shead-btn'
+                disabled={!isValid}
+              >
+                Next step
+              </button>
+            </div>
+          </div>
         </form>
       </Modal>
     </div>

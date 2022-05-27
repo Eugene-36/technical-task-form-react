@@ -3,12 +3,12 @@ table {
   border-collapse: collapse;
 }
 th {
-  border: 1px solid black;
+  border: 1px solid #6b7074;
   background-color: #376b8d;
 }
 td {
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid #6b7074;
 }
 tr {
   height: 20px;
