@@ -37,93 +37,144 @@ const OpenModal = () => {
           <div className='first-form'>
             <ul className='list initial-form'>
               <li>
-                <label htmlFor='company'>Company: </label>
-                <input
-                  type='text'
-                  id='company'
-                  autoComplete='off'
-                  name='company'
-                  {...register('company', { required: true })}
-                />
-                <small></small>
+                <label htmlFor='company'>
+                  Company:
+                  <input
+                    type='company'
+                    id='company'
+                    autoComplete='off'
+                    name='company'
+                    {...register('company', {
+                      required: 'This field is required',
+                      pattern: {
+                        value: /^[A-Zа-я]{2,}$/i,
+                        message:
+                          'Field may contain only letters and not be less than 2 letters',
+                      },
+                    })}
+                  />
+                </label>
+
+                <div>
+                  {errors?.company && (
+                    <span>{errors?.company?.message || 'Error!'}</span>
+                  )}
+                </div>
               </li>
 
               <li>
-                <label htmlFor='name'>Name: </label>
-                <input
-                  type='text'
-                  id='name'
-                  data-email
-                  autoComplete='off'
-                  name='username'
-                  {...register('name', {
-                    required: 'This field is required',
-                    minLength: {
-                      value: 5,
-                      message: 'Min Length for this field is 5',
-                    },
-                  })}
-                />
-                <div style={{ height: 40, color: 'red' }}>
+                <label htmlFor='name'>
+                  Name:
+                  <input
+                    type='text'
+                    id='name'
+                    data-email
+                    autoComplete='off'
+                    name='username'
+                    {...register('name', {
+                      required: 'This field is required',
+                      minLength: {
+                        value: 5,
+                        message: 'Min Length for this field is 5',
+                      },
+                    })}
+                  />
+                </label>
+
+                <div>
                   {errors?.name && (
                     <span>{errors?.name?.message || 'Error!'}</span>
                   )}
                 </div>
               </li>
               <li>
-                <label htmlFor='additional'>Additional: </label>
-                <input
-                  type='text'
-                  id='additional'
-                  autoComplete='off'
-                  name='additional'
-                  {...register('additional')}
-                />
-                <small></small>
+                <label htmlFor='additional'>
+                  Additional:
+                  <input
+                    type='text'
+                    id='additional'
+                    autoComplete='off'
+                    name='additional'
+                    {...register('additional', {
+                      pattern: {
+                        value: /^[A-Zа-я]{2,}$/i,
+                        message: 'Field may contain only letters',
+                      },
+                    })}
+                  />
+                </label>
+
+                <div>
+                  {errors?.additional && (
+                    <span>{errors?.additional?.message || 'Error!'}</span>
+                  )}
+                </div>
               </li>
               <li>
-                <label htmlFor='street'>Street: </label>
-                <input
-                  type='text'
-                  id='street'
-                  autoComplete='off'
-                  name='street'
-                  {...register('street')}
-                />
+                <label htmlFor='street'>
+                  Street:
+                  <input
+                    type='text'
+                    id='street'
+                    autoComplete='off'
+                    name='street'
+                    {...register('street')}
+                  />{' '}
+                </label>
+
                 <small></small>
               </li>
 
               <li>
-                <label htmlFor='postalCode'>Postal Code: </label>
-                <input
-                  type='text'
-                  id='postalCode'
-                  autoComplete='off'
-                  name='postal-code'
-                  {...register('postalCode')}
-                />
+                <label htmlFor='postalCode'>
+                  Postal Code:
+                  <input
+                    type='text'
+                    id='postalCode'
+                    autoComplete='off'
+                    name='postal-code'
+                    {...register('postalCode')}
+                  />{' '}
+                </label>
+
                 <small></small>
               </li>
 
               <li>
-                <label htmlFor='country'>Country: </label>
-                <input
-                  type='text'
-                  id='country'
-                  autoComplete='off'
-                  name='country'
-                  {...register('country')}
-                />
-                <small></small>
+                <label htmlFor='country'>
+                  Country:
+                  <input
+                    type='text'
+                    id='country'
+                    autoComplete='off'
+                    name='country'
+                    {...register('country', {
+                      pattern: {
+                        value: /^[A-Zа-я]{2,}$/i,
+                        message: 'Field may contain only letters',
+                      },
+                    })}
+                  />{' '}
+                </label>
+
+                <div>
+                  {errors?.additional && (
+                    <span>{errors?.additional?.message || 'Error!'}</span>
+                  )}
+                </div>
               </li>
             </ul>
-            <div className='btn-wrapper'>
+            <div className={style.btnWrapper}>
               <button
-                type='submit'
-                className='btn shead-btn'
+                type='button'
+                className={[style['btn'], style['log-in-box_layout']].join(' ')}
                 disabled={!isValid}
               >
-                Next step
+                Cancel
+              </button>
+
+              <button type='submit' className={style.next} disabled={!isValid}>
+                Next
               </button>
             </div>
           </div>
