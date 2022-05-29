@@ -1,6 +1,6 @@
 import './App.css';
 import TableFrame from './components/Table/TableFrame.jsx';
-import OpenModal from './components/Btn-open-modal/OpenModal.jsx';
+import OpenModal from './components/Main-modal/OpenModal.jsx';
 
 function App() {
   return (
