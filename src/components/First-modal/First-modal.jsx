@@ -7,12 +7,13 @@ import { toggleValueState } from '../../store/toggleReducer';
 
 const FirstModal = ({ formData, setFormData, next }) => {
   const dispatch = useDispatch();
+  const randomString = Math.random().toString(36).slice(2);
 
   //? Отправка данных для первой формы
   function getValuesFirstForm(data) {
     console.log('sbmit');
     reset();
-  }
+  } 
 
   //? For first form
   const {
@@ -24,6 +25,15 @@ const FirstModal = ({ formData, setFormData, next }) => {
 
   const toggleState = (value) => {
     dispatch(toggleValueState(value));
+  };
+
+  const addRandomId = (id) => {
+    setFormData({
+      ...formData,
+      id: id,
+    });
+
+    console.log('id', id);
   };
   return (
     <div>
@@ -214,8 +224,7 @@ const FirstModal = ({ formData, setFormData, next }) => {
             type='btn'
             onClick={() => {
               next();
-
-              getValuesFirstForm(forFirstForm);
+              addRandomId(randomString);
             }}
             className={style.next}
             disabled={!isValid}

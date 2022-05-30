@@ -20,9 +20,9 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
     mode: 'onBlur',
   });
 
-  function getValuesFromSecondForm(data) {
-    reset2();
-  }
+  // function getValuesFromSecondForm(data) {
+  //   reset2();
+  // }
 
   return (
     <div>
@@ -126,10 +126,7 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
           </button>
           <button
             type='button'
-            onClick={() => {
-              next();
-              getValuesFromSecondForm();
-            }}
+            onClick={() => next()}
             className={style.next}
             disabled={!isValid2}
           >

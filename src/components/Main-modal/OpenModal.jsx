@@ -11,12 +11,6 @@ import { openModal } from '../../store/toggleReducer';
 const OpenModal = () => {
   const [step, setStep] = useState(1);
   const dispatch = useDispatch();
-
-  const updateStateValue = (value) => {
-    dispatch(openModal(value));
-  };
-  const closeModal = useSelector((state) => state.modal.modal);
-
   const [formData, setFormData] = useState({
     company: '',
     name: '',
@@ -31,7 +25,13 @@ const OpenModal = () => {
     email: '',
     birthday: '',
     homepage: '',
+    id: '',
   });
+
+  const updateStateValue = (value) => {
+    dispatch(openModal(value));
+  };
+  const closeModal = useSelector((state) => state.modal.modal);
 
   const next = () => {
     setStep(step + 1);
@@ -74,7 +74,7 @@ const OpenModal = () => {
         break;
     }
   };
-  console.log('closeModal', closeModal);
+
   return (
     <div>
       <button onClick={() => updateStateValue(true)} className={style.addBtn}>
@@ -93,7 +93,7 @@ const OpenModal = () => {
         ></div>
         {/*! НАДО ЗДЕСЬ ПОПРОБОВАТЬ СДЕЛАТЬ ОДИН ОБЩИЙ HANDLESUBMIT */}
         {/* =========Открытие и шаги основной формы ============ */}
-        <form action=''>{formSteps()}</form>
+        <form>{formSteps()}</form>
 
         {/* ========= ============ */}
       </Modal>

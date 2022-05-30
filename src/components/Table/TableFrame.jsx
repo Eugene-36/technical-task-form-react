@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 const TableFrame = () => {
   const data = [
@@ -48,12 +49,16 @@ const TableFrame = () => {
       Birthday: '08.09.2019',
     },
   ];
+
+  const personalInfo = useSelector((state) => state.user.data);
+
+  console.log('personalInfo', personalInfo);
   return (
     <div className={style.wrapper}>
       <table>
         <tbody>
           <tr className={style.head}>
-            <th>Тут будет картинка</th>
+            <th className={style.deleteColumn}></th>
             <th>Company</th>
             <th>Name</th>
             <th>Additional</th>
@@ -67,48 +72,49 @@ const TableFrame = () => {
             <th>E-mail</th>
             <th>Birthday</th>
           </tr>
-          {data.map(
-            (
-              {
-                company,
-                name,
-                Additional,
-                Street,
-                PostalCode,
-                Country,
-                IBAN,
-                BIC,
-                BankName,
-                Fax,
-                Email,
-                Birthday,
-              },
-              key
-            ) => {
-              return (
-                <tr key={key}>
-                  <td>
-                    <FontAwesomeIcon
-                      icon={faTrashCan}
-                      className={style.highlight}
-                    />
-                  </td>
-                  <td>{company}</td>
-                  <td>{name}</td>
-                  <td>{Additional}</td>
-                  <td>{Street}</td>
-                  <td>{PostalCode}</td>
-                  <td>{Country}</td>
-                  <td>{IBAN}</td>
-                  <td>{BIC}</td>
-                  <td>{BankName}</td>
-                  <td>{Fax}</td>
-                  <td>{Email}</td>
-                  <td>{Birthday}</td>
-                </tr>
-              );
-            }
-          )}
+          {<span>You do not have data inserted</span> &&
+            personalInfo.map(
+              (
+                {
+                  company,
+                  name,
+                  additional,
+                  street,
+                  postal,
+                  country,
+                  iban,
+                  bic,
+                  bank,
+                  fax,
+                  email,
+                  birthday,
+                },
+                key
+              ) => {
+                return (
+                  <tr key={key}>
+                    <td>
+                      <FontAwesomeIcon
+                        icon={faTrashCan}
+                        className={style.highlight}
+                      />
+                    </td>
+                    <td>{company}</td>
+                    <td>{name}</td>
+                    <td>{additional}</td>
+                    <td>{street}</td>
+                    <td>{postal}</td>
+                    <td>{country}</td>
+                    <td>{iban}</td>
+                    <td>{bic}</td>
+                    <td>{bank}</td>
+                    <td>{fax}</td>
+                    <td>{email}</td>
+                    <td>{birthday}</td>
+                  </tr>
+                );
+              }
+            )}
         </tbody>
       </table>
     </div>

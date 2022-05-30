@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import style from './third.module.css';
 import { useDispatch } from 'react-redux';
 import { toggleValueState } from '../../store/toggleReducer';
+import { addPrivatInfo } from '../../store/dataReducer';
 
 const ThirdModal = ({ formData, setFormData, prev }) => {
   const dispatch = useDispatch();
@@ -19,8 +20,13 @@ const ThirdModal = ({ formData, setFormData, prev }) => {
 
   const closeThirdForm = (value) => {
     dispatch(toggleValueState(value));
+    // reset3();
+  };
+  const showAllData = (allData) => {
+    dispatch(addPrivatInfo(allData));
     reset3();
   };
+
   return (
     <div>
       <h2 className={style.invoiceAddressText}>Contact</h2>
@@ -154,7 +160,13 @@ const ThirdModal = ({ formData, setFormData, prev }) => {
           >
             Previous
           </button>
-          <button type='submit' className={style.next}>
+          <button
+            onClick={() => {
+              showAllData(formData);
+            }}
+            type='button'
+            className={style.next}
+          >
             Save
           </button>
         </div>

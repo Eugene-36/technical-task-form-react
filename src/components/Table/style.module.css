@@ -24,4 +24,8 @@ tr {
 }
 .highlight {
   color: #376b8d;
+  cursor: pointer;
+}
+.deleteColumn {
+  width: 58px;
 }
