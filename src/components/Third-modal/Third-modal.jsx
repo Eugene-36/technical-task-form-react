@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { toggleValueState } from '../../store/toggleReducer';
 import { addPrivatInfo } from '../../store/dataReducer';
 
-const ThirdModal = ({ formData, setFormData, prev }) => {
+const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
   const dispatch = useDispatch();
 
   //? For third form
@@ -22,6 +22,10 @@ const ThirdModal = ({ formData, setFormData, prev }) => {
     dispatch(toggleValueState(value));
     // reset3();
   };
+  const turnBackToIninitalForm = (numb) => {
+    setStep(numb);
+  };
+
   const showAllData = (allData) => {
     dispatch(addPrivatInfo(allData));
     reset3();
@@ -163,6 +167,8 @@ const ThirdModal = ({ formData, setFormData, prev }) => {
           <button
             onClick={() => {
               showAllData(formData);
+              closeThirdForm(false);
+              turnBackToIninitalForm(1);
             }}
             type='button'
             className={style.next}

@@ -12,8 +12,8 @@ const FirstModal = ({ formData, setFormData, next }) => {
   //? Отправка данных для первой формы
   function getValuesFirstForm(data) {
     console.log('sbmit');
-    reset();
-  } 
+    // reset();
+  }
 
   //? For first form
   const {

@@ -20,10 +20,6 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
     mode: 'onBlur',
   });
 
-  // function getValuesFromSecondForm(data) {
-  //   reset2();
-  // }
-
   return (
     <div>
       <h2 className={style.invoiceAddressText}>Bank Data</h2>

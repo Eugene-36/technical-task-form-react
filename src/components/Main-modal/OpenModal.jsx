@@ -67,6 +67,8 @@ const OpenModal = () => {
             formData={formData}
             setFormData={setFormData}
             prev={prev}
+            step={step}
+            setStep={setStep}
           />
         );
 
@@ -91,7 +93,6 @@ const OpenModal = () => {
           className={style.closeModal}
           onClick={() => updateStateValue(false)}
         ></div>
-        {/*! НАДО ЗДЕСЬ ПОПРОБОВАТЬ СДЕЛАТЬ ОДИН ОБЩИЙ HANDLESUBMIT */}
         {/* =========Открытие и шаги основной формы ============ */}
         <form>{formSteps()}</form>
 

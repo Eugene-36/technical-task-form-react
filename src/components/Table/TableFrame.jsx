@@ -5,51 +5,6 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 
 const TableFrame = () => {
-  const data = [
-    {
-      company: 'Apple',
-      name: 'Eugene',
-      Additional: 'Good qual',
-      Street: 'Ken-325/7',
-      PostalCode: '15244',
-      Country: 'USA',
-      IBAN: '41525141845',
-      BIC: '552956d',
-      BankName: 'Alfa',
-      Fax: '745ss758',
-      Email: 'dort@s.com',
-      Birthday: '08.09.2019',
-    },
-    {
-      company: 'Apple',
-      name: 'Eugene',
-      Additional: 'Good qual',
-      Street: 'Ken-325/7',
-      PostalCode: '15244',
-      Country: 'USA',
-      IBAN: '41525141845',
-      BIC: '552956d',
-      BankName: 'Alfa',
-      Fax: '745ss758',
-      Email: 'dort@s.com',
-      Birthday: '08.09.2019',
-    },
-    {
-      company: 'Apple',
-      name: 'Eugene',
-      Additional: 'Good qual',
-      Street: 'Ken-325/7',
-      PostalCode: '15244',
-      Country: 'USA',
-      IBAN: '41525141845',
-      BIC: '552956d',
-      BankName: 'Alfa',
-      Fax: '745ss758',
-      Email: 'dort@s.com',
-      Birthday: '08.09.2019',
-    },
-  ];
-
   const personalInfo = useSelector((state) => state.user.data);
 
   console.log('personalInfo', personalInfo);
@@ -72,7 +27,11 @@ const TableFrame = () => {
             <th>E-mail</th>
             <th>Birthday</th>
           </tr>
-          {<span>You do not have data inserted</span> &&
+          {personalInfo.length === 0 ? (
+            <tr className={style.message}>
+              <td>You do not have data inserted</td>
+            </tr>
+          ) : (
             personalInfo.map(
               (
                 {
@@ -114,7 +73,8 @@ const TableFrame = () => {
                   </tr>
                 );
               }
-            )}
+            )
+          )}
         </tbody>
       </table>
     </div>
