@@ -39,7 +39,6 @@ const OpenModal = () => {
   const prev = () => {
     setStep(step - 1);
   };
-
   const formSteps = () => {
     switch (step) {
       case 1:

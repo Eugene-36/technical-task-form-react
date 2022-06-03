@@ -35,7 +35,10 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
                   autoComplete='off'
                   name='iban'
                   {...register2('iban', {
-                    required: 'This field is required',
+                    pattern: {
+                      value: /^[A-Z]{2}(?:[ ]?[0-9]){18,20}$/i,
+                      message: 'invalid IBAN',
+                    },
                   })}
                   onChange={(e) => {
                     setFormData({ ...formData, iban: e.target.value });
@@ -61,7 +64,11 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
                   autoComplete='off'
                   name='bic'
                   {...register2('bic', {
-                    required: 'This field is required',
+                    pattern: {
+                      value:
+                        /^([A-Z]{6}[A-Z2-9][A-NP-Z1-9])(X{3}|[A-WY-Z0-9][A-Z0-9]{2})?$/,
+                      message: 'invalid BIC',
+                    },
                   })}
                   onChange={(e) => {
                     setFormData({ ...formData, bic: e.target.value });

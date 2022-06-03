@@ -108,6 +108,7 @@ input {
 .wrapperInputTextError {
   display: flex;
   flex-direction: column;
+  width: 242px;
 }
 .errorText {
   font-size: 10px;
@@ -115,4 +116,8 @@ input {
   max-width: 200px;
   margin: auto;
   color: red;
+}
+/* option a: make transparent */
+.cancelCursor input {
+  color: transparent !important;
 }

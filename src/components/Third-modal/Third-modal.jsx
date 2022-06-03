@@ -93,7 +93,7 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
               Birthday
               <div className={style.wrapperInputTextError}>
                 <input
-                  type='text'
+                  type='date'
                   id='birthday'
                   autoComplete='off'
                   name='birthday'

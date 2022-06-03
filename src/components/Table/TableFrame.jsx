@@ -2,10 +2,16 @@ import React from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deletePrivatInfo } from '../../store/dataReducer';
 
 const TableFrame = () => {
   const personalInfo = useSelector((state) => state.user.data);
+  const dispatch = useDispatch();
+
+  const deleteUserInfo = (id) => {
+    dispatch(deletePrivatInfo(id));
+  };
 
   console.log('personalInfo', personalInfo);
   return (
@@ -47,6 +53,7 @@ const TableFrame = () => {
                   fax,
                   email,
                   birthday,
+                  id,
                 },
                 key
               ) => {
@@ -54,6 +61,7 @@ const TableFrame = () => {
                   <tr key={key}>
                     <td>
                       <FontAwesomeIcon
+                        onClick={() => deleteUserInfo(id)}
                         icon={faTrashCan}
                         className={style.highlight}
                       />

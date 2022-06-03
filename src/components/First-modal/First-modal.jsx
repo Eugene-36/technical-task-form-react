@@ -1,9 +1,11 @@
 import React from 'react';
+import Select from 'react-select';
 import { useDispatch } from 'react-redux';
 import style from './first-modal.module.css';
 
 import { useForm } from 'react-hook-form';
 import { toggleValueState } from '../../store/toggleReducer';
+import { options, customStyles } from './list-countries.js';
 
 const FirstModal = ({ formData, setFormData, next }) => {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const FirstModal = ({ formData, setFormData, next }) => {
     console.log('sbmit');
     // reset();
   }
+  //    /* margin: 2px; */
 
   //? For first form
   const {
@@ -110,12 +113,6 @@ const FirstModal = ({ formData, setFormData, next }) => {
                   id='additional'
                   autoComplete='off'
                   name='additional'
-                  {...register('additional', {
-                    pattern: {
-                      value: /^[A-Zа-я]{2,}$/i,
-                      message: 'Field may contain only letters',
-                    },
-                  })}
                   onChange={(e) => {
                     setFormData({
                       ...formData,
@@ -180,24 +177,19 @@ const FirstModal = ({ formData, setFormData, next }) => {
             <label htmlFor='country'>
               Country
               <div className={style.wrapperInputTextError}>
-                <input
-                  type='text'
-                  id='country'
-                  autoComplete='off'
-                  name='country'
-                  {...register('country', {
-                    pattern: {
-                      value: /^[A-Zа-я]{2,}$/i,
-                      message: 'Field may contain only letters',
-                    },
-                  })}
+                <Select
+                  placeholder='Select'
+                  className={style.cancelCursor}
+                  styles={customStyles}
+                  options={options}
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      country: e.target.value,
+                      country: e.value,
                     });
                   }}
                 />
+
                 <div>
                   {errors?.country && (
                     <p className={style.errorText}>
