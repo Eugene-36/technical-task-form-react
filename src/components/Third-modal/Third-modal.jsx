@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import style from './third.module.css';
 import { useDispatch } from 'react-redux';
 import { toggleValueState } from '../../store/toggleReducer';
-import { addPrivatInfo } from '../../store/dataReducer';
+import { addPrivatInfo } from '../../store/actions';
 
 const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
   const dispatch = useDispatch();

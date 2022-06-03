@@ -3,7 +3,7 @@ import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { deletePrivatInfo } from '../../store/dataReducer';
+import { deletePrivatInfo } from '../../store/actions';
 
 const TableFrame = () => {
   const personalInfo = useSelector((state) => state.user.data);
