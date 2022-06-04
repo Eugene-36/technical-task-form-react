@@ -13,7 +13,6 @@ const TableFrame = () => {
     dispatch(deletePrivatInfo(id));
   };
 
-  console.log('personalInfo', personalInfo);
   return (
     <div className={style.wrapper}>
       <table>

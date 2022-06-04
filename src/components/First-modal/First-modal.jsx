@@ -11,19 +11,9 @@ const FirstModal = ({ formData, setFormData, next }) => {
   const dispatch = useDispatch();
   const randomString = Math.random().toString(36).slice(2);
 
-  //? Отправка данных для первой формы
-  function getValuesFirstForm(data) {
-    console.log('sbmit');
-    // reset();
-  }
-  //    /* margin: 2px; */
-
-  //? For first form
   const {
     register,
     formState: { errors, isValid },
-    getValues: forFirstForm,
-    reset,
   } = useForm({ mode: 'onBlur' });
 
   const toggleState = (value) => {
@@ -35,8 +25,6 @@ const FirstModal = ({ formData, setFormData, next }) => {
       ...formData,
       id: id,
     });
-
-    console.log('id', id);
   };
   return (
     <div>

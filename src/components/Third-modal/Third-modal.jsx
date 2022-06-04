@@ -12,7 +12,6 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
   const {
     register: register3,
     formState: { errors: errors3 },
-    handleSubmit: handleSubmit3,
     reset: reset3,
   } = useForm({
     mode: 'onBlur',
@@ -20,7 +19,6 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
 
   const closeThirdForm = (value) => {
     dispatch(toggleValueState(value));
-    // reset3();
   };
   const turnBackToIninitalForm = (numb) => {
     setStep(numb);
@@ -73,6 +71,11 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
                   name='email'
                   {...register3('email', {
                     required: 'This field is required',
+                    pattern: {
+                      value:
+                        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Please enter valid email',
+                    },
                   })}
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
@@ -96,10 +99,9 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
                   type='date'
                   id='birthday'
                   autoComplete='off'
+                  className={style.birthday}
                   name='birthday'
-                  {...register3('birthday', {
-                    required: 'This field is required',
-                  })}
+                  {...register3('birthday')}
                   onChange={(e) => {
                     setFormData({
                       ...formData,
@@ -127,9 +129,7 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
                   id='homepage'
                   autoComplete='off'
                   name='homepage'
-                  {...register3('homepage', {
-                    required: 'This field is required',
-                  })}
+                  {...register3('homepage')}
                   onChange={(e) => {
                     setFormData({
                       ...formData,

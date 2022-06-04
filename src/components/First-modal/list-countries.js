@@ -15,6 +15,7 @@ export const customStyles = {
     cursor: 'pointer',
     fontSize: '13px',
     minHeight: '29px',
+    borderRadius: '0px',
 
     background: 'white',
     height: '10px',

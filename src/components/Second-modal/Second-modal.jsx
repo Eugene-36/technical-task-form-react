@@ -14,8 +14,6 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
   const {
     register: register2,
     formState: { errors: errors2, isValid: isValid2 },
-    getValues: forSecondForm,
-    reset: reset2,
   } = useForm({
     mode: 'onBlur',
   });
