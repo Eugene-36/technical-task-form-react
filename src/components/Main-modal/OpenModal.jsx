@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import style from './open-modal.module.css';
 import Modal from 'react-modal';
 
 import SecondModal from '../Second-modal/Second-modal.jsx';
 import FirstModal from '../First-modal/First-modal';
 import ThirdModal from '../Third-modal/Third-modal.jsx';
-import * as actions from '../../store/actions/actionsToggle';
+
+import { useActions } from '../../custom-hooks/useActions';
 
 const OpenModal = () => {
   const [step, setStep] = useState(1);
-  const dispatch = useDispatch();
+
+  const { openModal } = useActions();
+
   const [formData, setFormData] = useState({
     company: '',
     name: '',
@@ -29,7 +32,7 @@ const OpenModal = () => {
   });
 
   const updateStateValue = (value) => {
-    dispatch(actions.openModal(value));
+    openModal(value);
   };
   const closeModal = useSelector((state) => state.modal.modal);
 

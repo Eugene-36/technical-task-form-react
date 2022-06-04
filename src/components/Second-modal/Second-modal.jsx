@@ -2,14 +2,13 @@ import React from 'react';
 import style from './second.module.css';
 import { useForm } from 'react-hook-form';
 
-import { toggleValueState } from '../../store/actions/actionsToggle';
-import { useDispatch } from 'react-redux';
+import { useActions } from '../../custom-hooks/useActions';
 
 const SecondModal = ({ formData, setFormData, prev, next }) => {
-  const dispatch = useDispatch();
+  const { toggleValueState } = useActions();
 
   const closeSecondModal = (value) => {
-    dispatch(toggleValueState(value));
+    toggleValueState(value);
   };
   const {
     register: register2,

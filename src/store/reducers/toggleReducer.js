@@ -1,12 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { openModal } from '../actions/actionsToggle';
+import { ToggleActionCreators } from '../actions/actionsToggle';
 
 const defaultState = {
   modal: false,
 };
 
 export default createReducer(defaultState, {
-  [openModal.type]: ({ modal }, action) => {
+  [ToggleActionCreators.openModal.type]: ({ modal }, action) => {
     return { modal: !modal };
   },
 });

@@ -1,13 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import style from './third.module.css';
-import { useDispatch } from 'react-redux';
 
-import { addPrivatInfo } from '../../store/actions/actions';
-import { toggleValueState } from '../../store/actions/actionsToggle';
+import { useActions } from '../../custom-hooks/useActions';
+
 const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
-  const dispatch = useDispatch();
-
+  const { toggleValueState, addPrivatInfo } = useActions();
   //? For third form
   const {
     register: register3,
@@ -18,14 +16,14 @@ const ThirdModal = ({ formData, setFormData, prev, step, setStep }) => {
   });
 
   const closeThirdForm = (value) => {
-    dispatch(toggleValueState(value));
+    toggleValueState(value);
   };
   const turnBackToIninitalForm = (numb) => {
     setStep(numb);
   };
 
   const showAllData = (allData) => {
-    dispatch(addPrivatInfo(allData));
+    addPrivatInfo(allData);
     reset3();
   };
 

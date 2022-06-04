@@ -2,15 +2,15 @@ import React from 'react';
 import style from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux';
-import { deletePrivatInfo } from '../../store/actions/actions';
+import { useSelector } from 'react-redux';
+import { useActions } from '../../custom-hooks/useActions';
 
 const TableFrame = () => {
   const personalInfo = useSelector((state) => state.user.data);
-  const dispatch = useDispatch();
+  const { deletePrivatInfo } = useActions();
 
   const deleteUserInfo = (id) => {
-    dispatch(deletePrivatInfo(id));
+    deletePrivatInfo(id);
   };
 
   return (

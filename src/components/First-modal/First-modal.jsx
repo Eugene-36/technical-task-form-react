@@ -1,15 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
-import { useDispatch } from 'react-redux';
+
 import style from './first-modal.module.css';
 
 import { useForm } from 'react-hook-form';
-import { toggleValueState } from '../../store/actions/actionsToggle';
 import { options, customStyles } from './list-countries.js';
+import { useActions } from '../../custom-hooks/useActions';
 
 const FirstModal = ({ formData, setFormData, next }) => {
-  const dispatch = useDispatch();
   const randomString = Math.random().toString(36).slice(2);
+  const { toggleValueState } = useActions();
 
   const {
     register,
@@ -17,7 +17,7 @@ const FirstModal = ({ formData, setFormData, next }) => {
   } = useForm({ mode: 'onBlur' });
 
   const toggleState = (value) => {
-    dispatch(toggleValueState(value));
+    toggleValueState(value);
   };
 
   const addRandomId = (id) => {
