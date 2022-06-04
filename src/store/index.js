@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { toogleModal } from './toggleReducer';
-import gatherUserInfo from './dataReducer';
+import toogleModal from './reducers/toggleReducer';
+import gatherUserInfo from './reducers/dataReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 

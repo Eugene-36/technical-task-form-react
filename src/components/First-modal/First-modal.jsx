@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import style from './first-modal.module.css';
 
 import { useForm } from 'react-hook-form';
-import { toggleValueState } from '../../store/toggleReducer';
+import { toggleValueState } from '../../store/actions/actionsToggle';
 import { options, customStyles } from './list-countries.js';
 
 const FirstModal = ({ formData, setFormData, next }) => {

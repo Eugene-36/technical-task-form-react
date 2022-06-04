@@ -2,7 +2,7 @@ import React from 'react';
 import style from './second.module.css';
 import { useForm } from 'react-hook-form';
 
-import { toggleValueState } from '../../store/toggleReducer';
+import { toggleValueState } from '../../store/actions/actionsToggle';
 import { useDispatch } from 'react-redux';
 
 const SecondModal = ({ formData, setFormData, prev, next }) => {

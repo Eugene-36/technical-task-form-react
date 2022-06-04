@@ -6,7 +6,8 @@ import Modal from 'react-modal';
 import SecondModal from '../Second-modal/Second-modal.jsx';
 import FirstModal from '../First-modal/First-modal';
 import ThirdModal from '../Third-modal/Third-modal.jsx';
-import { openModal } from '../../store/toggleReducer';
+import openModal from '../../store/reducers/toggleReducer';
+import * as actions from '../../store/actions/actionsToggle';
 
 const OpenModal = () => {
   const [step, setStep] = useState(1);
@@ -29,7 +30,7 @@ const OpenModal = () => {
   });
 
   const updateStateValue = (value) => {
-    dispatch(openModal(value));
+    dispatch(actions.openModal(value));
   };
   const closeModal = useSelector((state) => state.modal.modal);
 
