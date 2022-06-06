@@ -7,7 +7,11 @@ import { useForm } from 'react-hook-form';
 import { options, customStyles } from './list-countries.js';
 import { useActions } from '../../custom-hooks/useActions';
 
-const FirstModal = ({ formData, setFormData, next }) => {
+//? MobX
+import toggleValue from '../../mobX/store/toggleValue';
+import { observer } from 'mobx-react-lite';
+
+const FirstModal = observer(({ formData, setFormData, next }) => {
   const randomString = Math.random().toString(36).slice(2);
   const { toggleValueState } = useActions();
 
@@ -16,6 +20,7 @@ const FirstModal = ({ formData, setFormData, next }) => {
     formState: { errors, isValid },
   } = useForm({ mode: 'onBlur' });
 
+  // For redux
   const toggleState = (value) => {
     toggleValueState(value);
   };
@@ -194,7 +199,8 @@ const FirstModal = ({ formData, setFormData, next }) => {
             type='button'
             className={[style['btn']].join(' ')}
             onClick={() => {
-              toggleState(false);
+              // toggleState(false);
+              toggleValue.changeToggleValue(false);
             }}
           >
             Cancel
@@ -215,6 +221,6 @@ const FirstModal = ({ formData, setFormData, next }) => {
       </div>
     </div>
   );
-};
+});
 
 export default FirstModal;

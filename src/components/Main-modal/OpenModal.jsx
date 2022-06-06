@@ -9,8 +9,11 @@ import ThirdModal from '../Third-modal/Third-modal.jsx';
 
 import { useActions } from '../../custom-hooks/useActions';
 
-const OpenModal = () => {
-  
+//? MobX
+import toggleValue from '../../mobX/store/toggleValue';
+import { observer } from 'mobx-react-lite';
+
+const OpenModal = observer(() => {
   const [step, setStep] = useState(1);
 
   const { openModal } = useActions();
@@ -32,11 +35,12 @@ const OpenModal = () => {
     id: '',
   });
 
+  // For Redux
   const updateStateValue = (value) => {
     openModal(value);
   };
   const closeModal = useSelector((state) => state.modal.modal);
-
+  // For Redux
   const next = () => {
     setStep(step + 1);
   };
@@ -82,19 +86,22 @@ const OpenModal = () => {
 
   return (
     <div>
-      <button onClick={() => updateStateValue(true)} className={style.addBtn}>
+      <button
+        onClick={() => toggleValue.changeToggleValue(true)}
+        className={style.addBtn}
+      >
         Add
       </button>
       <Modal
-        isOpen={closeModal}
-        onRequestClose={() => closeModal}
+        isOpen={toggleValue.statment}
+        onRequestClose={() => toggleValue.changeToggleValue(false)}
         className={style.positionModal}
         contentLabel='Example Modal'
         ariaHideApp={false}
       >
         <div
           className={style.closeModal}
-          onClick={() => updateStateValue(false)}
+          onClick={() => toggleValue.changeToggleValue(false)}
         ></div>
         {/* =========Открытие и шаги основной формы ============ */}
         <form>{formSteps()}</form>
@@ -103,6 +110,6 @@ const OpenModal = () => {
       </Modal>
     </div>
   );
-};
+});
 
 export default OpenModal;

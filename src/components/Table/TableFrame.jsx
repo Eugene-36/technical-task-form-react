@@ -5,12 +5,19 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { useActions } from '../../custom-hooks/useActions';
 
-const TableFrame = () => {
+//? MobX
+import addDeleteInfo from '../../mobX/store/addDeleteInfo';
+import { observer } from 'mobx-react-lite';
+import { toJS } from 'mobx';
+
+const TableFrame = observer(() => {
+  // For Redux
   const personalInfo = useSelector((state) => state.user.data);
   const { deletePrivatInfo } = useActions();
 
   const deleteUserInfo = (id) => {
-    deletePrivatInfo(id);
+    // deletePrivatInfo(id);
+    addDeleteInfo.removePersonalInfo(id);
   };
 
   return (
@@ -32,12 +39,12 @@ const TableFrame = () => {
             <th>E-mail</th>
             <th>Birthday</th>
           </tr>
-          {personalInfo.length === 0 ? (
+          {toJS(addDeleteInfo.data).length === 0 ? (
             <tr className={style.message}>
               <td>You do not have data inserted</td>
             </tr>
           ) : (
-            personalInfo.map(
+            toJS(addDeleteInfo.data).map(
               (
                 {
                   company,
@@ -86,6 +93,6 @@ const TableFrame = () => {
       </table>
     </div>
   );
-};
+});
 
 export default TableFrame;

@@ -4,9 +4,14 @@ import { useForm } from 'react-hook-form';
 
 import { useActions } from '../../custom-hooks/useActions';
 
-const SecondModal = ({ formData, setFormData, prev, next }) => {
+//? MobX
+import toggleValue from '../../mobX/store/toggleValue';
+import { observer } from 'mobx-react-lite';
+
+const SecondModal = observer(({ formData, setFormData, prev, next }) => {
   const { toggleValueState } = useActions();
 
+  // For redux
   const closeSecondModal = (value) => {
     toggleValueState(value);
   };
@@ -113,7 +118,10 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
           <button
             type='button'
             className={[style['btn']].join(' ')}
-            onClick={() => closeSecondModal(false)}
+            onClick={() => {
+              toggleValue.changeToggleValue(false);
+              //closeSecondModal(false)
+            }}
           >
             Cancel
           </button>
@@ -136,6 +144,6 @@ const SecondModal = ({ formData, setFormData, prev, next }) => {
       </div>
     </div>
   );
-};
+});
 
 export default SecondModal;
