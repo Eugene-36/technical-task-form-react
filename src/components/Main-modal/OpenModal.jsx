@@ -10,6 +10,7 @@ import ThirdModal from '../Third-modal/Third-modal.jsx';
 import { useActions } from '../../custom-hooks/useActions';
 
 const OpenModal = () => {
+  
   const [step, setStep] = useState(1);
 
   const { openModal } = useActions();
